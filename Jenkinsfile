@@ -10,7 +10,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                powershell 'Get-Host | Select-Object Version'
+                powershell 'C:\Build\Build.exe'
+                echo ${WORKSPACE}
             }
         }
         stage('Deploy') {
