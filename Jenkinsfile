@@ -11,7 +11,6 @@ pipeline {
             steps {
                 echo 'Testing..'
                 powershell 'C:\\Build\\Build.exe'
-                echo ${WORKSPACE}
             }
         }
         stage('Deploy') {
