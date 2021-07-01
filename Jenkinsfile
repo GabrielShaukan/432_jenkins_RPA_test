@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'Get-Host | Select-Object Version'
+                powershell 'Get-Host | Select-Object Version'
             }
         }
         stage('Deploy') {
