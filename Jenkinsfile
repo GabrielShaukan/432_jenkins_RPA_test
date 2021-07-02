@@ -16,7 +16,7 @@ pipeline {
                 
                 
                 dir("${WORKSPACE}\\new") {
-                    git 'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml'
+                    git 'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git'
                 }
                 
                 echo 'Deploying Integration..'
