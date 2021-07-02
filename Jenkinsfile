@@ -8,7 +8,7 @@ pipeline {
                 UiPathPack (
                     outputPath: '${WORKSPACE}\\Output', 
                     outputType: 'Process', 
-                    projectJsonPath: '${WORKSPACE}\\project.json', 
+                    projectJsonPath: 'C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace', 
                     version: AutoVersion())
             }
         }
