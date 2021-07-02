@@ -5,13 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                echo "${WORKSPACE}"
-                echo "${env.WORKSPACE}"
-                echo "$WORKSPACE"
                 UiPathPack (
                     outputPath: '${WORKSPACE}\\Output', 
                     outputType: 'Process', 
-                    projectJsonPath: 'C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace', 
+                    projectJsonPath: "${WORKSPACE}", 
                     version: AutoVersion())
             }
         }
