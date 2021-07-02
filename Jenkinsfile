@@ -13,10 +13,10 @@ pipeline {
                 
                 echo 'Testing Integration..'
                 
-                git url:'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git'
+                
                 
                 dir("${WORKSPACE}") {
-                    checkout 'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git'
+                    git url:'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git'
                 }
                 
                 echo 'Deploying Integration..'
