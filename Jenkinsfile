@@ -20,6 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                input 'Deploy to test?'
                 echo 'Testing Konsolidation..'
                 
                 
