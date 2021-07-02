@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 UiPathPack (
-                    outputPath: '${WORKSPACE}\\Output', 
+                    outputPath: "${WORKSPACE}\\Output", 
                     outputType: 'Process', 
                     projectJsonPath: "${WORKSPACE}", 
                     version: AutoVersion())
