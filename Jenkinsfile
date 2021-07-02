@@ -14,6 +14,7 @@ pipeline {
                 echo 'Testing Integration..'
                 
                 echo 'Deploying Integration..'
+                powershell "git clone https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git"
                 powershell "C:\\Scripts\\Upload.exe targetOrchestratorName=dev targetOrchestratorURL=https://uipath.akoa.rocks/ targetTenantName=AKOA_GER_TEST targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
             }
         }
