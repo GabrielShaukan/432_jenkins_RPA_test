@@ -15,7 +15,7 @@ pipeline {
                 
                 
                 
-                dir("C:\JenkinsRoot\jenkins_rpa_test\master") {
+                dir("C:\\JenkinsRoot\\jenkins_rpa_test\\master") {
                     git 'https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git'
                 }
                 
