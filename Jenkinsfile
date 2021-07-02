@@ -14,7 +14,7 @@ pipeline {
                 echo 'Testing Dev..'
                 
                 echo 'Deploying Dev..'
-                pwsh "C:\\Scripts\\Upload.exe targetOrchestratorName=dev targetOrchestratorURL=https://uipath.akoa.rocks/ targetTenantName=AKOA_GER_TEST targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=${WORKSPACE}"
+                pwsh "C:\\Scripts\\Upload.exe targetOrchestratorName=dev targetOrchestratorURL=https://uipath.akoa.rocks/ targetTenantName=AKOA_GER_TEST targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
             }
         }
         stage('Test') {
