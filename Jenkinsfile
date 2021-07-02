@@ -8,7 +8,7 @@ pipeline {
                 UiPathPack (
                     outputPath: '${WORKSPACE}\\Output', 
                     outputType: 'Process', 
-                    projectJsonPath: '${WORKSPACE}', 
+                    projectJsonPath: '${WORKSPACE}\\project.json', 
                     version: AutoVersion())
             }
         }
