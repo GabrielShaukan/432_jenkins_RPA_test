@@ -33,7 +33,9 @@ pipeline {
                 echo 'Deploying Produktion..'
                 powershell "C:\\Scripts\\Deploy.exe sourceOrchestratorName=dev sourceOrchestratorURL=https://uipath.akoa.rocks/ sourceTenantName=AKOA_GER_TEST sourceUsername=RPADeployTest sourcePassword=test1234 targetOrchestratorName=prod targetOrchestratorURL=https://uipath-test.akoa.rocks/ targetTenantName=Default targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
                 
-                deleteDir("${WORKSPACE}\\Output")
+                dir ("${WORKSPACE}\\Output") {
+                    deleteDir()
+                }
             }
         }
     }
