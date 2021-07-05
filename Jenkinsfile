@@ -34,7 +34,7 @@ pipeline {
                     powershell "git clone https://gitlab.com/GabrielShaukan/foldernameexe.git"
                 }
                 
-                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Upload.exe targetOrchestratorName=$DevOrchestratorName targetOrchestratorURL=$DevOrchestratorUrl targetTenantName=$DevTenantName targetUsername=\$Username targetPassword=\$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
+                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Upload.exe targetOrchestratorName=$DevOrchestratorName targetOrchestratorURL=$DevOrchestratorUrl targetTenantName=$DevTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
             }
         }
         stage('Test') {
@@ -44,7 +44,7 @@ pipeline {
                 
                 
                 echo 'Deploying Integration..'
-                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=\$Username sourcePassword=\$Password targetOrchestratorName=$TestOrchestratorName targetOrchestratorURL=$TestOrchestratorUrl targetTenantName=$TestTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
+                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=$Username sourcePassword=$Password targetOrchestratorName=$TestOrchestratorName targetOrchestratorURL=$TestOrchestratorUrl targetTenantName=$TestTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
             }
         }
         stage('Deploy') {
@@ -53,7 +53,7 @@ pipeline {
                 echo 'Testing Produktion..'
                 
                 echo 'Deploying Produktion..'
-                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=\$Username sourcePassword=\$Password targetOrchestratorName=$ProdOrchestratorName targetOrchestratorURL=$ProdOrchestratorUrl targetTenantName=$ProdTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
+                powershell "${WORKSPACE}\\new\\foldernameexe\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=$Username sourcePassword=$Password targetOrchestratorName=$ProdOrchestratorName targetOrchestratorURL=$ProdOrchestratorUrl targetTenantName=$ProdTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
                 
                 dir ("${WORKSPACE}\\Output") {
                     deleteDir()
