@@ -1,11 +1,24 @@
 pipeline {
     agent any
-
+    environment {
+        Username = credentials('OrchestratorUsername')
+        Password = credentials('OrchestratorPassword')
+        DevOrchestratorName = 'Integration'
+        DevOrchestratorUrl = 'https://uipath.akoa.rocks/'
+        DevTenantName = 'AKOA_GER_TEST'
+        TestOrchestratorName = 'Konsolidation'
+        TestOrchestratorUrl = 'https://uipath.akoa.rocks/'
+        TestTenantName = 'TestTenant3'
+        ProdOrchestratorName = 'Produktion'
+        ProdOrchestratorUrl = 'https://uipath-test.akoa.rocks/'
+        ProdTenantName = 'Default'
+        FolderName = '432_jenkins_RPA_test'
+        IsRelease = 'True'
+        
+    }
+    
     stages {
         stage('Build') {
-            environment {
-                Username = credentials('OrchestratorUsername')
-            }
             steps {
                 echo 'Building..'
                 UiPathPack (
@@ -21,7 +34,7 @@ pipeline {
                     powershell "git clone https://gitlab.com/my-ci-test-group123/160_cicd_test_process_yaml.git"
                 }
                 
-                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Upload.exe targetOrchestratorName=dev targetOrchestratorURL=https://uipath.akoa.rocks/ targetTenantName=AKOA_GER_TEST targetUsername=$Username targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
+                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Upload.exe targetOrchestratorName=$DevOrchestratorName targetOrchestratorURL=$DevOrchestratorUrl targetTenantName=$DevTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
             }
         }
         stage('Test') {
@@ -31,15 +44,16 @@ pipeline {
                 
                 
                 echo 'Deploying Integration..'
-                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Deploy.exe sourceOrchestratorName=dev sourceOrchestratorURL=https://uipath.akoa.rocks/ sourceTenantName=AKOA_GER_TEST sourceUsername=RPADeployTest sourcePassword=test1234 targetOrchestratorName=test targetOrchestratorURL=https://uipath.akoa.rocks/ targetTenantName=TestTenant3 targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
+                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=$Username sourcePassword=$Password targetOrchestratorName=$TestOrchestratorName targetOrchestratorURL=$TestOrchestratorUrl targetTenantName=$TestTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
             }
         }
         stage('Deploy') {
             steps {
+                input 'Deploy to test?'
                 echo 'Testing Produktion..'
                 
                 echo 'Deploying Produktion..'
-                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Deploy.exe sourceOrchestratorName=dev sourceOrchestratorURL=https://uipath.akoa.rocks/ sourceTenantName=AKOA_GER_TEST sourceUsername=RPADeployTest sourcePassword=test1234 targetOrchestratorName=prod targetOrchestratorURL=https://uipath-test.akoa.rocks/ targetTenantName=Default targetUsername=RPADeployTest targetPassword=test1234 folderName=432_jenkins_RPA_test projectId=432 isRelease=true packagePath=C:\\JenkinsRoot\\jenkins_rpa_test\\master\\workspace\\Output"
+                powershell "${WORKSPACE}\\new\\160_cicd_test_process_yaml\\Scripts\\Deploy.exe sourceOrchestratorName=$DevOrchestratorName sourceOrchestratorURL=$DevOrchestratorUrl sourceTenantName=$DevTenantName sourceUsername=$Username sourcePassword=$Password targetOrchestratorName=$ProdOrchestratorName targetOrchestratorURL=$ProdOrchestratorUrl targetTenantName=$ProdTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output"
                 
                 dir ("${WORKSPACE}\\Output") {
                     deleteDir()
