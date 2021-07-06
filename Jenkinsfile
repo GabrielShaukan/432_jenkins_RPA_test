@@ -34,7 +34,7 @@ pipeline {
                     powershell "git clone https://gitlab.com/GabrielShaukan/foldernameexe.git"
                 }
                 
-                powershell '${WORKSPACE}\\new\\foldernameexe\\Scripts\\Upload.exe targetOrchestratorName=$DevOrchestratorName targetOrchestratorURL=$DevOrchestratorUrl targetTenantName=$DevTenantName targetUsername=${Username} targetPassword=${Password} folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output'
+                powershell '$WORKSPACE\\new\\foldernameexe\\Scripts\\Upload.exe targetOrchestratorName=$DevOrchestratorName targetOrchestratorURL=$DevOrchestratorUrl targetTenantName=$DevTenantName targetUsername=$Username targetPassword=$Password folderName=$FolderName isRelease=$IsRelease packagePath=${WORKSPACE}\\Output'
             }
         }
         stage('Test') {
