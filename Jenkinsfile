@@ -25,7 +25,7 @@ pipeline {
                     outputPath: "${WORKSPACE}\\Output", 
                     outputType: 'Process', 
                     projectJsonPath: "${WORKSPACE}", 
-                    version: AutoVersion())
+                    version:[$class: 'ManualVersionEntry', version: 1.0.1-test"])
                 
                 UiPathPack (
                     outputPath: "${WORKSPACE}\\Output", 
