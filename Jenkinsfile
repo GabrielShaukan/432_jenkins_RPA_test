@@ -31,7 +31,7 @@ pipeline {
                     outputPath: "${WORKSPACE}\\Output", 
                     outputType: 'Process', 
                     projectJsonPath: "${WORKSPACE}", 
-                    version: [$class: 'ManualVersionEntry', version: "1.0.1-test"])
+                    version: [$class: 'ManualVersionEntry', version: "1.0.1-"+AutoVersion()])
                 
                 echo 'Testing Integration..'
                 
