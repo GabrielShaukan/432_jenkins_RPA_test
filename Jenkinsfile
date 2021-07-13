@@ -25,13 +25,13 @@ pipeline {
                     outputPath: "${WORKSPACE}\\Output", 
                     outputType: 'Process', 
                     projectJsonPath: "${WORKSPACE}", 
-                    version:[$class: 'ManualVersionEntry', version: 1.0.123qweqwe])
+                    version:AutoVersion())
                 
                 UiPathPack (
                     outputPath: "${WORKSPACE}\\Output", 
                     outputType: 'Process', 
                     projectJsonPath: "${WORKSPACE}", 
-                    version: "v.1.0.1-test")
+                    version: [$class: 'ManualVersionEntry', version: 1.0.1-test])
                 
                 echo 'Testing Integration..'
                 
